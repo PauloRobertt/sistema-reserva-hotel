@@ -5,8 +5,6 @@ import Input from '../form/Input.js';
 import Button from '../form/SubmitButton.js';
 import LinkButton from '../layout/LinkButton.js';
 
-import { useNavigate } from "react-router";
-
 //imagem
 import photo from '../../img/photo_form.jpg';
 
