@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Login from './components/pages/Login.js';
-import Register from './components/pages/Register.js';
+import Login from '../components/pages/Login.js';
+import Register from '../components/pages/Register.js';
 
 export default function Rotas(){
     return(
