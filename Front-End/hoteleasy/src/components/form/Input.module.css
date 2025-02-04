@@ -1,0 +1,53 @@
+.container{
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+    width: 100%;
+    background-color: white;
+    border: 0.2em solid #ecf4f4;
+    border-radius: 0.4em;
+    padding: 0 0.5em;
+}
+
+label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    font-size:1.5em;
+}
+
+input{
+    width: 100%;
+    background-color: white;
+    border: none;
+    padding:1em 0;
+    transition: border-color 0.3s ease;
+    outline: none;
+}
+
+input::placeholder{
+    color: rgb(65, 65, 65);
+}
+
+.container:has(input:focus){
+    transition: border-color 0.3s ease;
+    border-color: #b8bdbd;
+}
+
+.buttonPasswordHidden{
+    display: none;
+}
+
+.buttonPasswordShow{
+    display: block;
+    width: 10%;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    color:#A9A9A9;
+}
+
+.icon{
+    color:#A9A9A9;
+}
