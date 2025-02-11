@@ -1,6 +1,6 @@
-import repository from "../repository/hotelRepository.js";
+import repository from "../repository/quartoRepository.js";
 
-class hotelService {
+class quartoService {
     async findAll() {
         return await repository.findAll();
     }
@@ -11,54 +11,54 @@ class hotelService {
         }
 
         try {
-            const hotel = await repository.findById(id);
-            if (!hotel) {
-                throw new Error('Hotel não encontrado!');
+            const quarto = await repository.findById(id);
+            if (!quarto) {
+                throw new Error('Quarto não encontrado!');
             }
 
-            return hotel;
+            return quarto;
         }
         catch (error) {
-            throw new Error(`Erro ao realizar a busca do hotel: ${error}`);
+            throw new Error(`Erro ao realizar a busca do quarto: ${error}`);
         }
     }
 
-    async createHotel(data) {
+    async createQuarto(data) {
         try {
-            const {hotel, nome, preco, localizacao, servicosDisponiveis, quantidadeDeQuartos, disponibilidade} = data;
+            const {quarto, nome, preco, localizacao, servicosDisponiveis, quantidadeDeQuartos, disponibilidade} = data;
 
             if (!nome || !preco || !localizacao || !servicosDisponiveis || !quantidadeDeQuartos || !disponibilidade) {
                 throw new Error('Todos os campos são obrigatórios!');
             }
 
-            return await repository.createHotel(data);
+            return await repository.createQuarto(data);
         }
         catch (error) {
             throw new Error (error.message);
         }
     }
 
-    async editHotel(id, editHotel) {
+    async editQuarto(id, editQuarto) {
         try {
-            return await repository.editHotel(id, editHotel);
+            return await repository.editQuarto(id, editQuarto);
         }
         catch (error) {
             throw new Error(`Erro ao editar o usuario: ${error}`);
         }
     }
 
-    async deleteHotel(id) {
+    async deleteQuarto(id) {
         if (!id) {
             throw new Error('O ID é obrigatorio!');
         }
 
         try {
-            const hotel = await repository.findById(id);
-            if (!hotel) {
+            const quarto = await repository.findById(id);
+            if (!quarto) {
                 throw new Error('Usuario não encontrado!');
             }
 
-            return await repository.deleteHotel(id);
+            return await repository.deleteQuarto(id);
         }
         catch (error) {
             throw new Error(`Erro ao realizar a deleção do usuario: ${error}`);
@@ -67,4 +67,4 @@ class hotelService {
 
 }
 
-export default new hotelService();
+export default new quartoService();

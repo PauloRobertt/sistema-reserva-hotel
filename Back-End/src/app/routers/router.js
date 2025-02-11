@@ -4,8 +4,8 @@ import express from 'express';
 import usuarioController from '../controllers/usuarioController.js';
 import authenticationController from '../controllers/authenticationController.js';
 
-//Hotel
-import hotelController from '../controllers/hotelController.js';
+//Quarto
+import quartoController from '../controllers/quartoController.js';
 
 //Security
 import TokenService from '../security/TokenService.js';
@@ -20,12 +20,12 @@ router.post('/usuario', TokenService.checkToken, usuarioController.createUser);
 router.put('/usuario/:id', TokenService.checkToken, usuarioController.editUser);
 router.delete('/usuario/:id', TokenService.checkToken, usuarioController.deleteUser);
 
-//Rotas CRUD Hotel
-router.get('/hotel', hotelController.findAll);
-router.get('/hotel/:id', hotelController.findById);
-router.post('/hotel', hotelController.createHotel);
-router.put('/hotel/:id', hotelController.editHotel);
-router.delete('/hotel/:id', hotelController.deleteHotel);
+//Rotas CRUD Quarto
+router.get('/quarto', quartoController.findAll);
+router.get('/quarto/:id', quartoController.findById);
+router.post('/quarto', quartoController.createQuarto);
+router.put('/quarto/:id', quartoController.editQuarto);
+router.delete('/quarto/:id', quartoController.deleteQuarto);
 
 //Rotas de Autenticaçaõ
 router.post('/auth/login', authenticationController.login);

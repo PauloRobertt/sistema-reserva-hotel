@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
 import database from '../database/db.js';
 
-const hotel = database.define('quartos', {
+const quarto = database.define('quarto', {
     id:{
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -42,4 +42,4 @@ const hotel = database.define('quartos', {
     }
 })
 
-export default hotel;
+export default quarto;
