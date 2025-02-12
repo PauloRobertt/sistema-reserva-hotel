@@ -1,10 +1,11 @@
 import "dotenv/config";
 import app from "./app.js";
-import database from './app/database/db.js'
+import database from './app/database/db.js';
+import './app/models/associations.js';
 
 const port = process.env.PORT || 3001;
 
-database.sync({ alter: true })
+database.sync({ force: true })
     .then(() => {
         console.log('Banco de dados sincronizado!')
 
