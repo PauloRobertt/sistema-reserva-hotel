@@ -3,6 +3,7 @@ import Input from '../form/Input.js';
 import Button from '../form/SubmitButton.js';
 import styles from './Register.module.css';
 import LinkButton from '../layout/LinkButton.js';
+import stylesLinkButton from '../layout/LinkButton.module.css';
 
 //imagem
 import photo from '../../img/photo_form.jpg';
@@ -102,6 +103,7 @@ export default function Register() {
                     <LinkButton
                         caminho='/login'
                         text='Realizar Login'
+                        className={stylesLinkButton.LinkLoginRegister}
                     />
                 </p>
             </div>

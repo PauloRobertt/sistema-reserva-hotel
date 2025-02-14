@@ -1,6 +1,9 @@
 import { useState } from 'react';
 
 import styles from './Login.module.css';
+
+import styleLinkButton from '../layout/LinkButton.module.css';
+
 import Input from '../form/Input.js';
 import Button from '../form/SubmitButton.js';
 import LinkButton from '../layout/LinkButton.js';
@@ -78,6 +81,7 @@ export default function Login() {
                     <LinkButton
                         caminho='/register'
                         text='Esqueceu sua senha?'
+                        className={styleLinkButton.LinkLoginRegister}
                     />
 
                     <Button
@@ -91,6 +95,7 @@ export default function Login() {
                     <LinkButton
                         caminho='/register'
                         text='Cadastre-se'
+                        className={styleLinkButton.LinkLoginRegister}
                     />
                 </p>
             </div>
