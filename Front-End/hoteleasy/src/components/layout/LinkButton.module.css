@@ -1,7 +1,15 @@
-.button{
+.LinkButton{
     text-decoration: none;
+    width: fit-content;
+}
+
+.LinkHeader{
+    color: black;
+    margin: 0 1em;
+}
+
+.LinkLoginRegister{
     color: #3A8897;
     font-size: 0.9em;
     font-weight: bold;
-    width: fit-content;
 }

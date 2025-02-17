@@ -1,0 +1,63 @@
+.contentMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 5em;
+}
+
+.link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.iconMenu{
+    cursor: pointer;
+
+}
+
+@keyframes animMenuAbrir {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes animMenuFechar {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5em;
+    padding: 3em 1em;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 18em;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    overflow: hidden;
+    transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.ativo {
+    animation: animMenuAbrir 0.4s forwards;
+}
+
+.fechado {
+    animation: animMenuFechar 0.4s forwards;
+}
