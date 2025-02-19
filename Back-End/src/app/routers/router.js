@@ -1,5 +1,9 @@
 import express from 'express';
 
+//Swagger
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../docs/swagger.js';
+
 //Usuario
 import usuarioController from '../controllers/usuarioController.js';
 import authenticationController from '../controllers/authenticationController.js';
@@ -13,10 +17,15 @@ import permissios from '../permissions/permissions.js';
 
 const router = express.Router();
 
+//Rota Swagger
+router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+//TokenService.checkToken, permissios.verifyAdmin
+
 //Rotas CRUD Usuario
-router.get('/usuario', TokenService.checkToken, permissios.verifyAdmin, usuarioController.findAll);
+router.get('/usuario', usuarioController.findAll);
 router.get('/usuario/:id', TokenService.checkToken, usuarioController.findById);
-router.post('/usuario', TokenService.checkToken, usuarioController.createUser);
+router.post('/usuario', usuarioController.createUser);
 router.put('/usuario/:id', TokenService.checkToken, usuarioController.editUser);
 router.delete('/usuario/:id', TokenService.checkToken, usuarioController.deleteUser);
 
