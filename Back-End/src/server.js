@@ -5,7 +5,7 @@ import './app/models/associations.js';
 
 const port = process.env.PORT || 3001;
 
-database.sync({ force: true })
+database.sync({ alter: true })
     .then(() => {
         console.log('Banco de dados sincronizado!')
 
