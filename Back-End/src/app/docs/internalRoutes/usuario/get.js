@@ -1,5 +1,6 @@
 export default {
     get: {
+        tags:['Usuario'],
         description: 'Retornar Usuarios',
         operationId: 'getUsuarios',
         summary: 'Retornar usuarios',
