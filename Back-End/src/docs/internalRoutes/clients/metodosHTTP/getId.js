@@ -4,6 +4,11 @@ export default {
         description: 'Retornar usuario',
         operationId: 'getUsuario',
         summary: 'Retornar usuario',
+        security: [
+            {
+                ApiKeyAuth: []
+            }
+        ],
         parameters: [
             {
                 in: 'path',
