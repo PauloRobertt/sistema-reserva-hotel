@@ -2,14 +2,13 @@ import express from 'express';
 
 //Swagger
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../docs/swagger.js';
+import swaggerDocument from '../../docs/swagger.js';
 
-//Usuario
+//Controllers
 import usuarioController from '../controllers/usuarioController.js';
 import authenticationController from '../controllers/authenticationController.js';
-
-//Quarto
 import quartoController from '../controllers/quartoController.js';
+import hotelController from '../controllers/hotelController.js';
 
 //Security
 import TokenService from '../security/TokenService.js';
@@ -35,6 +34,13 @@ router.get('/quarto/:id', quartoController.findById);
 router.post('/quarto', quartoController.createQuarto);
 router.put('/quarto/:id', quartoController.editQuarto);
 router.delete('/quarto/:id', quartoController.deleteQuarto);
+
+//Rotas CRUD Hotel
+router.get('/hotel', hotelController.findAll);
+router.get('/hotel/:id', hotelController.findById);
+router.post('/hotel', hotelController.createHotel);
+router.put('/hotel/:id', hotelController.editHotel);
+router.delete('/hotel/:id', hotelController.deleteHotel);
 
 //Rotas de Autenticaçaõ
 router.post('/auth/login', authenticationController.login);

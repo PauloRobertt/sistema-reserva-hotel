@@ -8,7 +8,7 @@ class quartoController {
             return res.json(result);
         }
         catch (error) {
-            console.error(`Ocorreu um erro ao realizar a busca de algum quarto`, error);
+            console.error(`Ocorreu um erro ao realizar a busca dos quarto`, error);
             return res.status(500).json({error: 'Erro ao buscar quarto!'});
         }
     }

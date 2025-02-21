@@ -1,5 +1,6 @@
 import usuario from "./usuario.js";
 import quarto from "./quarto.js";
+import hotel from './hotel.js';
 import reserva from "./reserva.js";
 
 //Caso usuario ou quarto forem removidos seus relacionamentos também serão removidos
@@ -12,4 +13,7 @@ reserva.belongsTo(usuario, {foreignKey: 'idUsuario'});
 quarto.hasMany(reserva, {foreignKey: 'idQuarto', onDelete: 'CASCADE'});
 reserva.belongsTo(quarto, {foreignKey: 'idQuarto'});
 
-export { usuario, quarto, reserva };
+hotel.hasMany(quarto, {foreignKey: 'idHotel', onDelete: 'CASCADE'});
+quarto.belongsTo(hotel, {foreignKey: 'idHotel'});
+
+export { usuario, quarto, reserva, hotel };

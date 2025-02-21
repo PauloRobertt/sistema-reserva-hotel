@@ -8,28 +8,12 @@ const quarto = database.define('quarto', {
         allowNull: false,
         primaryKey: true
     },
-    hotel:{
+    nomeQuarto:{
         type: DataTypes.STRING(100),
         allowNull: false
     },
-    nome:{
-        type: DataTypes.STRING(100),
-        allowNull: false
-    },
-    preço:{
+    preco:{
         type: DataTypes.DECIMAL(10,2),
-        allowNull: false
-    },
-    localizacao:{
-        type: DataTypes.STRING(100),
-        allowNull: false
-    },
-    servicosDisponiveis:{
-        type: DataTypes.STRING(50),
-        allowNull: false
-    },
-    quantidadeDeQuartos:{
-        type: DataTypes.INTEGER,
         allowNull: false
     },
     disponibilidade:{
@@ -38,6 +22,10 @@ const quarto = database.define('quarto', {
     },
     imagemUrl:{
         type: DataTypes.STRING(50),
+        allowNull: true
+    },
+    idHotel:{
+        type: DataTypes.INTEGER,
         allowNull: false
     }
 })
