@@ -1,5 +1,6 @@
 import usuarios from './schemas/usuarioSchema.js';
 import auth from './schemas/authSchema.js';
+import hotelSchema from './schemas/hotelSchema.js';
 
 export default {
     components: {
@@ -15,6 +16,7 @@ export default {
         schemas: {
             ...usuarios,
             ...auth,
+            ...hotelSchema,
             Error: {
                 type: "object",
                 properties: {
