@@ -1,42 +1,43 @@
 import quarto from '../models/quarto.js';
 
-class quartoRepository{
+class quartoRepository {
 
-    async findAll(){
+    async findAll() {
         const result = await quarto.findAll();
         return result;
     }
 
-    async findById(id){
+    async findById(id) {
         const result = await quarto.findByPk(id)
         return result;
     }
 
-    async createQuarto(data){
-        const {quarto, nome, preco, localizacao, servicosDisponiveis, quantidadeDeQuartos, disponibilidade} = data;
+    async createQuarto(data) {
+        const { nomeQuarto, preco, disponibilidade, imagemUrl, idHotel } = data;
 
-        return await quarto.create({nome, preco, localizacao, servicosDisponiveis, quantidadeDeQuartos, disponibilidade});
+        return await quarto.create({ nomeQuarto, preco, disponibilidade, imagemUrl, idHotel });
     }
 
-    async editQuarto(id, data){
-        const {quarto, nome, preco, localizacao, servicosDisponiveis, quantidadeDeQuartos, disponibilidade} = data;
+    async editQuarto(id, data) {
+        const { nomeQuarto, preco, disponibilidade, imagemUrl, idHotel } = data;
+
         const quartoEditado = await quarto.findByPk(id);
 
-        if(!quartoEditado){
+        if (!quartoEditado) {
             throw new Error("Quarto não encontrado!");
         }
 
-        return await quartoEditado.update({nome, preco, localizacao, servicosDisponiveis, quantidadeDeQuartos, disponibilidade});
+        return await quartoEditado.update({ nomeQuarto, preco, disponibilidade, imagemUrl, idHotel });
     }
 
-    async deleteQuarto(id){
+    async deleteQuarto(id) {
         const quartoDelete = await quarto.findByPk(id);
 
-        if(!quartoDelete){
+        if (!quartoDelete) {
             throw new Error("Quarto não encontrado!")
         }
 
-        return await quartoDelete.destroy();   
+        return await quartoDelete.destroy();
     }
 }
 

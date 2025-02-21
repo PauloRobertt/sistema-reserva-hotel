@@ -25,9 +25,9 @@ class quartoService {
 
     async createQuarto(data) {
         try {
-            const {quarto, nome, preco, localizacao, servicosDisponiveis, quantidadeDeQuartos, disponibilidade} = data;
+            const {nomeQuarto, preco, disponibilidade, imagemUrl, idHotel} = data;
 
-            if (!nome || !preco || !localizacao || !servicosDisponiveis || !quantidadeDeQuartos || !disponibilidade) {
+            if (!nomeQuarto || !preco || !disponibilidade || !imagemUrl || !idHotel) {
                 throw new Error('Todos os campos são obrigatórios!');
             }
 
@@ -43,7 +43,7 @@ class quartoService {
             return await repository.editQuarto(id, editQuarto);
         }
         catch (error) {
-            throw new Error(`Erro ao editar o usuario: ${error}`);
+            throw new Error(`Erro ao editar o quarto: ${error}`);
         }
     }
 
@@ -54,14 +54,15 @@ class quartoService {
 
         try {
             const quarto = await repository.findById(id);
+
             if (!quarto) {
-                throw new Error('Usuario não encontrado!');
+                throw new Error('Quarto não encontrado!');
             }
 
             return await repository.deleteQuarto(id);
         }
         catch (error) {
-            throw new Error(`Erro ao realizar a deleção do usuario: ${error}`);
+            throw new Error(`Erro ao realizar a deleção do quarto: ${error}`);
         }
     }
 
