@@ -4,11 +4,13 @@ export default {
         description: 'Retornar hotel',
         operationId: 'getHotel',
         summary: 'Retornar hotel',
+        /*
         security: [
             {
                 ApiKeyAuth: []
             }
         ],
+        */
         parameters: [
             {
                 in: 'path',

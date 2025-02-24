@@ -1,16 +1,9 @@
 export default {
-    get: {
-        tags: ['Usuario'],
-        description: 'Retornar usuario',
-        operationId: 'getUsuario',
-        summary: 'Retornar usuario',
-        /*
-        security: [
-            {
-                ApiKeyAuth: []
-            }
-        ],
-        */
+    delete: {
+        tags: ['Quarto'],
+        description: 'Deletar quarto',
+        operationId: 'deleteQuarto',
+        summary: 'Deletar quarto',
         parameters: [
             {
                 in: 'path',
@@ -19,16 +12,16 @@ export default {
                 schema: {
                     type: 'integer',
                 },
-                description: 'Número do id do usuario'
+                description: 'Número de id do quarto'
             }
         ],
         responses: {
             '200': {
-                description: 'Usuario retornado',
+                description: 'Quarto deletado',
                 content: {
                     'application/json': {
                         schema: {
-                            $ref: '#/components/schemas/usuarioResponse'
+                            $ref: '#/components/schemas/quartoResponse'
                         },
                     },
                 },
