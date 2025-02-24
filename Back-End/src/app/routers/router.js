@@ -9,6 +9,7 @@ import usuarioController from '../controllers/usuarioController.js';
 import authenticationController from '../controllers/authenticationController.js';
 import quartoController from '../controllers/quartoController.js';
 import hotelController from '../controllers/hotelController.js';
+import reservaController from '../controllers/reservaController.js';
 
 //Security
 import TokenService from '../security/TokenService.js';
@@ -45,5 +46,11 @@ router.delete('/hotel/:id', hotelController.deleteHotel);
 //Rotas de Autenticaçaõ
 router.post('/auth/login', authenticationController.login);
 router.post('/auth/register', authenticationController.register);
+
+//Rotas Reserva
+router.post('/reserva', reservaController.createReserva);
+router.get('/reserva', reservaController.findAll);
+router.get('/reserva/:id', reservaController.findById);
+router.delete('/reserva/:id', reservaController.deleteReserva);
 
 export default router;
