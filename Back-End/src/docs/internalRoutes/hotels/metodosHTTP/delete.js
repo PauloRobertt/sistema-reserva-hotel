@@ -1,16 +1,9 @@
 export default {
-    get: {
-        tags: ['Usuario'],
-        description: 'Retornar usuario',
-        operationId: 'getUsuario',
-        summary: 'Retornar usuario',
-        /*
-        security: [
-            {
-                ApiKeyAuth: []
-            }
-        ],
-        */
+    delete: {
+        tags: ['Hotel'],
+        description: 'Deletar hotel',
+        operationId: 'deleteHotel',
+        summary: 'Deletar hotel',
         parameters: [
             {
                 in: 'path',
@@ -19,16 +12,16 @@ export default {
                 schema: {
                     type: 'integer',
                 },
-                description: 'Número do id do usuario'
+                description: 'Número de id do hotel'
             }
         ],
         responses: {
             '200': {
-                description: 'Usuario retornado',
+                description: 'Hotel deletado',
                 content: {
                     'application/json': {
                         schema: {
-                            $ref: '#/components/schemas/usuarioResponse'
+                            $ref: '#/components/schemas/hotelResponse'
                         },
                     },
                 },

@@ -1,5 +1,7 @@
 import usuarios from './schemas/usuarioSchema.js';
 import auth from './schemas/authSchema.js';
+import hotelSchema from './schemas/hotelSchema.js';
+import quartoSchema from './schemas/quartoSchema.js';
 
 export default {
     components: {
@@ -15,6 +17,8 @@ export default {
         schemas: {
             ...usuarios,
             ...auth,
+            ...hotelSchema,
+            ...quartoSchema,
             Error: {
                 type: "object",
                 properties: {

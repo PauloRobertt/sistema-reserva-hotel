@@ -1,9 +1,9 @@
 export default {
     get: {
-        tags: ['Usuario'],
-        description: 'Retornar usuario',
-        operationId: 'getUsuario',
-        summary: 'Retornar usuario',
+        tags: ['Quarto'],
+        description: 'Retornar quarto',
+        operationId: 'getQuarto',
+        summary: 'Retornar quarto',
         /*
         security: [
             {
@@ -19,16 +19,16 @@ export default {
                 schema: {
                     type: 'integer',
                 },
-                description: 'Número do id do usuario'
+                description: 'Número de id do quarto'
             }
         ],
         responses: {
             '200': {
-                description: 'Usuario retornado',
+                description: 'Quarto retornado',
                 content: {
                     'application/json': {
                         schema: {
-                            $ref: '#/components/schemas/usuarioResponse'
+                            $ref: '#/components/schemas/quartoResponse'
                         },
                     },
                 },
