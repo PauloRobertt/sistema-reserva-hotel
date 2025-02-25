@@ -10,12 +10,28 @@ class reservaService {
                 throw new Error('Todos os campos são obrigatórios!');
             }
 
+            const quartoEncontrado = await serviceQuarto.findById(idQuarto);
+
+            if(!quartoEncontrado.disponibilidade){
+                throw new Error('Quarto já ocupado!');
+            }
+
+            const dataEntrada = new Date(dataDeEntrada);
+            const dataSaida = new Date(dataDeSaida);
+
+            if(
+                dataEntrada.getTime() >= dataSaida.getTime()
+            ){
+                throw new Error("A data de saída deve ser maior que a data de entrada.");
+            }
+
             await serviceQuarto.editQuarto(idQuarto, {disponibilidade: false});
 
             return await repository.createReserva(data);
 
         } catch (error) {
-            throw new Error(error.message);
+            console.error('Erro ao realizar a reserva: ', error);
+            throw error;
         }
     }
 
@@ -24,26 +40,28 @@ class reservaService {
             return await repository.findAll();
 
         } catch (error) {
-            throw new Error(error.message);
+            console.error('Erro ao listar as reservas: ', error);
+            throw error;
         }
     }
 
-    async listaReservaForId(id) {
+    async listarReservaPorId(id) {
         if (!id) {
             throw new Error('O ID é obrigatorio!');
         }
 
         try {
-            const returnReserva = await repository.findById(id);
+            const reservaEncontrada  = await repository.findById(id);
 
-            if (!returnReserva) {
-                throw new Error('Reserva não encontrado!');
+            if (!reservaEncontrada ) {
+                throw new Error('Reserva não encontrada!');
             }
 
-            return returnReserva;
+            return reservaEncontrada ;
         }
         catch (error) {
-            throw new Error(`Erro ao realizar a busca da reserva: ${error}`);
+            console.error(`Erro ao realizar a busca da reserva: ${error}`);
+            throw error;
         }
     }
 
@@ -53,16 +71,19 @@ class reservaService {
         }
 
         try {
-            const returnReserva = await repository.findById(id);
+            const reservaEncontrada  = await repository.findById(id);
 
-            if (!returnReserva) {
+            if (!reservaEncontrada ) {
                 throw new Error('Reserva não encontrada!');
             }
+
+            await serviceQuarto.editQuarto(reservaEncontrada.idQuarto, {disponibilidade: true});
 
             return await repository.deleteReserva(id);
 
         } catch (error) {
-            throw new Error(error.message);
+            console.error(`Erro ao cancelar a reserva: ${error}`);
+            throw error;
         }
     }
 }
