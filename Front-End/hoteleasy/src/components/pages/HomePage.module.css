@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .sectionBanner{
     background: url(../../img/BannerFundo.jpg);
     background-size: cover;
@@ -15,3 +16,31 @@
 .sectionBanner h1{
     font-size: 4em;
 }
+=======
+.banner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 8em;
+    width: 100%;
+    height: 50vh;
+    background-image: url('../../img/photo-Banner.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner h1 {
+    font-family: "Playfair Display", serif;
+    color: white;
+    font-size: 3em;
+}
+
+.banner h2 {
+    color: #dad9d9;
+    font-size: 1.3em;
+}
+>>>>>>> 1205d97 (feat(front-end): adiciona seção de banner na HomePage)
