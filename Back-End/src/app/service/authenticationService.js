@@ -22,13 +22,12 @@ class authenticationService {
             }
 
             const passwordCompare = await bcrypt.compare(senha, usuarioExistente.senha);
+
             if (usuarioExistente.email !== email || !passwordCompare) {
                 throw new Error('Email ou senha inválidos!')
             }
 
-            const token = TokenService.generateToken(usuarioExistente);
-
-            return token;
+            return TokenService.generateTokens(usuarioExistente);
 
         } catch (error) {
             throw new Error(error.message);
