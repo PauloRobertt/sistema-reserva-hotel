@@ -46,6 +46,7 @@ router.delete('/hotel/:id', hotelController.deleteHotel);
 //Rotas de Autenticaçaõ
 router.post('/auth/login', authenticationController.login);
 router.post('/auth/register', authenticationController.register);
+router.post('/auth/refresh', authenticationController.refresh);
 
 //Rotas Reserva
 router.post('/reserva', reservaController.createReserva);

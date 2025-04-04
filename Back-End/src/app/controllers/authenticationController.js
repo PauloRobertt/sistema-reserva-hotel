@@ -1,5 +1,8 @@
 import service from "../service/authenticationService.js";
-import cookieParser from 'cookie-parser';
+import TokenService from "../security/TokenService.js";
+import jwt from 'jsonwebtoken';
+
+import 'dotenv/config';
 
 class authenticationController {
 
@@ -31,6 +34,17 @@ class authenticationController {
             return res.status(500).json({ message: `${error.message}` });
         }
     }
+
+    async refresh(req, res) {
+        try {
+            const result = await TokenService.refresh(req.cookies.refreshToken);
+            return res.status(200).json({AcessToken: result});
+        }
+        catch (error) {
+            return res.status(500).json({ message: `${error.message}` });
+        }
+    }
+        
 }
 
 export default new authenticationController();
