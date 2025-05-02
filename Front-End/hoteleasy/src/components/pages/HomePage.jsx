@@ -1,4 +1,4 @@
-import Header from "../layout/Header.js"
+import Header from "../layout/Header.jsx"
 
 export default function HomePage(){
     return(

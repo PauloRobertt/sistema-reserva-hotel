@@ -1,8 +1,8 @@
 //Componentes
-import Input from '../form/Input.js';
-import Button from '../form/SubmitButton.js';
+import Input from '../form/Input.jsx';
+import Button from '../form/SubmitButton.jsx';
 import styles from './Register.module.css';
-import LinkButton from '../layout/LinkButton.js';
+import LinkButton from '../layout/LinkButton.jsx';
 import stylesLinkButton from '../layout/LinkButton.module.css';
 
 //imagem

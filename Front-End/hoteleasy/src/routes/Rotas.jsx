@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //Telas de Authenticação
-import Login from '../components/pages/Login.js';
-import Register from '../components/pages/Register.js';
+import Login from '../components/pages/Login.jsx';
+import Register from '../components/pages/Register.jsx';
 
 //Tela Home
-import Home from '../components/pages/HomePage.js';
+import Home from '../components/pages/HomePage.jsx';
 
 export default function Rotas() {
     return (

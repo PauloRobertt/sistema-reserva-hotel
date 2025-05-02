@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import styles from './Header.module.css';
-import LinkButton from './LinkButton.js';
+import LinkButton from './LinkButton.jsx';
 import stylesLinkButton from './LinkButton.module.css';
-import Menu from './Menu.js';
+import Menu from './Menu.jsx';
 
 //ReactIcons
 import { SlMenu } from "react-icons/sl";

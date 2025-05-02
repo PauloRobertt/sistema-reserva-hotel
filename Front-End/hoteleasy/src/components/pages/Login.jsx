@@ -4,9 +4,9 @@ import styles from './Login.module.css';
 
 import styleLinkButton from '../layout/LinkButton.module.css';
 
-import Input from '../form/Input.js';
-import Button from '../form/SubmitButton.js';
-import LinkButton from '../layout/LinkButton.js';
+import Input from '../form/Input.jsx';
+import Button from '../form/SubmitButton.jsx';
+import LinkButton from '../layout/LinkButton.jsx';
 
 //imagem
 import photo from '../../img/photo_form.jpg';
