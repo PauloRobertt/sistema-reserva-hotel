@@ -1,6 +1,5 @@
 import service from "../service/authenticationService.js";
 import TokenService from "../security/TokenService.js";
-import jwt from 'jsonwebtoken';
 
 import 'dotenv/config';
 
@@ -13,13 +12,14 @@ class authenticationController {
             res.cookie("refreshToken", refreshToken, {
                 httpOnly: true,
                 secure: true,
-                sameSite: "Strict",
+                sameSite: "None",
                 maxAge: 30 * 24 * 60 * 60 * 1000
             });
 
             res.status(200).json({
                 message: "Login Success", token: acessToken
             });
+            
         } catch (error) {
             return res.status(500).json({ message: `${error.message}` });
         }
@@ -37,8 +37,8 @@ class authenticationController {
 
     async refresh(req, res) {
         try {
-            const result = await TokenService.refresh(req.cookies.refreshToken);
-            return res.status(200).json({AcessToken: result});
+            const acessToken = await TokenService.refresh(req.cookies.refreshToken);
+            res.status(200).json({AcessToken: acessToken});
         }
         catch (error) {
             return res.status(500).json({ message: `${error.message}` });
