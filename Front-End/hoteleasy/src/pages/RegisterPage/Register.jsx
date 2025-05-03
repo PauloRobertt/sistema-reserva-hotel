@@ -1,12 +1,12 @@
 //Componentes
-import Input from '../form/Input.jsx';
-import Button from '../form/SubmitButton.jsx';
-import styles from './Register.module.css';
-import LinkButton from '../layout/LinkButton.jsx';
-import stylesLinkButton from '../layout/LinkButton.module.css';
+import Input from '../../components/Input.jsx';
+import Button from '../../components/SubmitButton.jsx';
+import styles from '../RegisterPage/Register.module.css';
+import LinkButton from '../../components/LinkButton.jsx';
+import stylesLinkButton from '../../components/LinkButton.module.css';
 
 //imagem
-import photo from '../../img/photo_form.jpg';
+import photo from '../../assets/img/photo_form.jpg';
 
 import { useState } from 'react';
 import { useNavigate } from "react-router";
@@ -41,12 +41,19 @@ export default function Register() {
             },
             body: JSON.stringify(usuario)
         })
-            .then((res) => res.json())
+            .then((res) => {
+                if(!res.ok){
+                    throw new Error(`Erro na requisição: ${res.status}`)
+                }
+
+                return res.json();
+            })
             .then((data) => {
-                console.log(data)
                 navegate("/login", { state: { message: 'Usuario criado com sucesso!' } })
             })
-            .catch((error) => { console.log(error) })
+            .catch((error) => {
+                console.error('Erro na requisição: ', error)
+            })
     }
 
     return (

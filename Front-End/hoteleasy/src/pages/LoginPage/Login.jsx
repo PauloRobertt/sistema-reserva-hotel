@@ -1,15 +1,17 @@
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import styles from './Login.module.css';
 
-import styleLinkButton from '../layout/LinkButton.module.css';
+import styleLinkButton from '../../components/LinkButton.module.css';
 
-import Input from '../form/Input.jsx';
-import Button from '../form/SubmitButton.jsx';
-import LinkButton from '../layout/LinkButton.jsx';
+import Input from '../../components/Input.jsx';
+import Button from '../../components/SubmitButton.jsx';
+import LinkButton from '../../components/LinkButton.jsx';
 
 //imagem
-import photo from '../../img/photo_form.jpg';
+import photo from '../../assets/img/photo_form.jpg';
 
 //React Icons
 import { MdOutlineEmail } from "react-icons/md";
@@ -18,6 +20,8 @@ import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 
 export default function Login() {
+    const navegate = useNavigate();
+
     const [usuario, setUsuario] = useState({});
 
     const submit = (e) => {
@@ -36,12 +40,19 @@ export default function Login() {
                 'Accept': 'application/json',
                 'Content-type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(usuario)
         })
-            .then((res) => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`Erro na requisição: ${res.status}`)
+                }
+
+                return res.json();
+            })
             .then((data) => {
-                const token = data.token
-                localStorage.setItem('token', token);
+                localStorage.setItem('AcessToken', data.token);
+                navegate('/');
             })
             .catch((error) => { console.log(error) })
     }
