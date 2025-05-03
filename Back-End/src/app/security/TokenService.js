@@ -2,13 +2,14 @@ import 'dotenv/config';
 import jwt from 'jsonwebtoken';
 
 class TokenService {
-    refresh(refreshToken) {
+
+    refresh = (refreshToken) => {
         try {
             return new Promise((resolve, reject) => {
-                if (!refreshToken) throw new Error('RefreshToken não encontrado!');
+                if (!refreshToken) reject(new Error('RefreshToken não encontrado!'));
 
                 jwt.verify(refreshToken, process.env.REFRESH_SECRET, (err, user) => {
-                    if (err) throw new Error("RefreshToken inválido!");
+                    if (err) reject(new Error("RefreshToken inválido!"));
 
                     const acessToken = jwt.sign(
                         {
@@ -17,7 +18,7 @@ class TokenService {
                             role: user.role
                         },
                         process.env.ACCESS_SECRET,
-                        { expiresIn: '1m' }
+                        { expiresIn: '15m' }
                     );
 
                     resolve(acessToken);
@@ -46,36 +47,31 @@ class TokenService {
                 role: user.role
             },
             process.env.ACCESS_SECRET,
-            { expiresIn: '1m' }
+            { expiresIn: '15m' }
         );
 
         return { refreshToken, acessToken };
     }
 
-    teste(teste){
-        console.log(teste);
-    }
-
-    checkToken(req, res, next) {
+    checkToken = (req, res, next) => {
         const authHeader = req.headers['authorization'];
-        const token = authHeader && authHeader.split(' ')[1];
+        // const token = authHeader && authHeader.split(' ')[1];
+        const token = authHeader;
 
         if (!token) return res.status(403).json({ msg: 'Token não encontrado!' });
 
         jwt.verify(token, process.env.ACCESS_SECRET, async (err, user) => {
             if (err) {
-                
-                this.teste('Function Teste');
-        
+
                 if (err.name === 'TokenExpiredError') {
                     return res.status(401).json({
                         message: 'Token Expirado!',
                     });
                 }
-        
+
                 return res.status(403).json({ message: 'Token Invalido!' });
             }
-        
+
             req.user = user;
             next();
         });
