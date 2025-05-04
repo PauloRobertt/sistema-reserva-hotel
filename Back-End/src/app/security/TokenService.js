@@ -2,45 +2,80 @@ import 'dotenv/config';
 import jwt from 'jsonwebtoken';
 
 class TokenService {
-    generateToken(user) {
-        const secret = process.env.SECRET;
-        const token = jwt.sign(
+
+    refresh = (refreshToken) => {
+        try {
+            return new Promise((resolve, reject) => {
+                if (!refreshToken) reject(new Error('RefreshToken não encontrado!'));
+
+                jwt.verify(refreshToken, process.env.REFRESH_SECRET, (err, user) => {
+                    if (err) reject(new Error("RefreshToken inválido!"));
+
+                    const acessToken = jwt.sign(
+                        {
+                            id: user.id,
+                            email: user.email,
+                            role: user.role
+                        },
+                        process.env.ACCESS_SECRET,
+                        { expiresIn: '15m' }
+                    );
+
+                    resolve(acessToken);
+                })
+            })
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+    generateTokens(user) {
+        const refreshToken = jwt.sign(
             {
                 id: user.id,
                 email: user.email,
                 role: user.role
             },
-            secret,
-            { expiresIn: '1h' }
+            process.env.REFRESH_SECRET,
+            { expiresIn: '7d' }
         );
 
-        return token;
+        const acessToken = jwt.sign(
+            {
+                id: user.id,
+                email: user.email,
+                role: user.role
+            },
+            process.env.ACCESS_SECRET,
+            { expiresIn: '15m' }
+        );
+
+        return { refreshToken, acessToken };
     }
 
-    checkToken(req, res, next) {
-        try {
-            const secret = process.env.SECRET;
+    checkToken = (req, res, next) => {
+        const authHeader = req.headers['authorization'];
+        // const token = authHeader && authHeader.split(' ')[1];
+        const token = authHeader;
 
-            const authHeader = req.headers['authorization'];
-            const token = authHeader && authHeader.split(' ')[1];
+        if (!token) return res.status(403).json({ msg: 'Token não encontrado!' });
 
-            if (!token) {
-                res.status(403).json({ msg: 'Token não encontrado!' });
+        jwt.verify(token, process.env.ACCESS_SECRET, async (err, user) => {
+            if (err) {
+
+                if (err.name === 'TokenExpiredError') {
+                    return res.status(401).json({
+                        message: 'Token Expirado!',
+                    });
+                }
+
+                return res.status(403).json({ message: 'Token Invalido!' });
             }
 
-            const decode = jwt.verify(token, secret);
-
-            req.user = {
-                id: decode.id, 
-                email: decode.email, 
-                role: decode.role
-            };
-
+            req.user = user;
             next();
+        });
 
-        } catch (error) {
-            res.status(404).json({ msg: 'Token Invalido!' });
-        }
     }
 };
 
