@@ -2,7 +2,7 @@
     width: 100%;
     padding: 0.8em;
     border-radius: 0.4em;
-    background-color: #3A8897;
+    background-color: var(--SecondaryColor);
     border: none;
     color: #FFFFFF;
     font-size: 1em;
@@ -10,6 +10,5 @@
 }
 
 .button:hover{
-    background-color: #788c93;
-    color: white;
+    background-color: #00a6ff;
 }

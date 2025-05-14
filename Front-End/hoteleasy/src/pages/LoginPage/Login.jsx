@@ -2,16 +2,15 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import styles from './Login.module.css';
+import { OrganizarImg } from '../../assets/OrganizarImg.js';
+
+import styles from '../Auth.module.css';
 
 import styleLinkButton from '../../components/LinkButton.module.css';
 
 import Input from '../../components/Input.jsx';
 import Button from '../../components/SubmitButton.jsx';
 import LinkButton from '../../components/LinkButton.jsx';
-
-//imagem
-import photo from '../../assets/img/photo_form.jpg';
 
 //React Icons
 import { MdOutlineEmail } from "react-icons/md";
@@ -59,11 +58,21 @@ export default function Login() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.sessionLogin}>
-                <h2>Login</h2>
-                <small>Por favor use seu email e senha para acessar</small>
+            <figure className={styles.containerImg}>
+                <img src={OrganizarImg.ImageHotel} alt="Imagem ilustrativa e minimalista de um hotel" />
+                <div className={styles.textImg}>
+                    <h2>
+                        Bem-Vindo ao <br />HotelEasy
+                    </h2>
+                    <p>
+                        Sua jornada começa com um clique.
+                    </p>
+                </div>
+            </figure>
+            <div className={styles.session}>
+                <h1>LOGIN</h1>
                 <form onSubmit={submit} className={styles.form}>
-
+                    <small>Por favor use seu email e senha para acessar.</small>
                     <Input
                         icon={<MdOutlineEmail />}
                         type='email'
@@ -74,6 +83,7 @@ export default function Login() {
                         maxLength={100}
                         placeholder='Digite seu endereço de e-mail'
                     />
+
                     <Input
                         iconCadeadoLock={<FaLock />}
                         iconCadeadoUnLock={<FaUnlock />}
@@ -88,7 +98,6 @@ export default function Login() {
                         placeholder='Digite sua senha'
                     />
 
-
                     <LinkButton
                         caminho='/register'
                         text='Esqueceu sua senha?'
@@ -99,9 +108,8 @@ export default function Login() {
                         tipo='submit'
                         text='Login'
                     />
-
                 </form>
-                <p className={styles.linkRegister}>
+                <p className={styles.link}>
                     Não tem uma conta?
                     <LinkButton
                         caminho='/register'
@@ -109,9 +117,6 @@ export default function Login() {
                         className={styleLinkButton.LinkLoginRegister}
                     />
                 </p>
-            </div>
-            <div className={styles.containerImagem}>
-                <img src={photo} alt='' />
             </div>
         </div>
     );

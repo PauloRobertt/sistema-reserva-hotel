@@ -1,3 +1,12 @@
+:root{
+  --FeedBackVisualSucesso: #3C9837;
+  --FeedBackVisualError: #E41212;
+  --FeedBackVisualAlert: #FFB703;
+  --PrimaryColor: #ffffff;
+  --SecondaryColor: #0077B6;
+  --TextColor: #1F1F1F;
+}
+
 *{
   padding: 0;
   margin: 0;

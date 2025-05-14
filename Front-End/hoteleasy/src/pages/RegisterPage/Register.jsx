@@ -1,12 +1,11 @@
 //Componentes
 import Input from '../../components/Input.jsx';
 import Button from '../../components/SubmitButton.jsx';
-import styles from '../RegisterPage/Register.module.css';
+import styles from '../Auth.module.css';
 import LinkButton from '../../components/LinkButton.jsx';
 import stylesLinkButton from '../../components/LinkButton.module.css';
 
-//imagem
-import photo from '../../assets/img/photo_form.jpg';
+import { OrganizarImg } from '../../assets/OrganizarImg.js';
 
 import { useState } from 'react';
 import { useNavigate } from "react-router";
@@ -42,7 +41,7 @@ export default function Register() {
             body: JSON.stringify(usuario)
         })
             .then((res) => {
-                if(!res.ok){
+                if (!res.ok) {
                     throw new Error(`Erro na requisição: ${res.status}`)
                 }
 
@@ -58,8 +57,19 @@ export default function Register() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.sessionRegister}>
-                <h2>Registro</h2>
+            <figure className={styles.containerImg}>
+                <img src={OrganizarImg.ImageHotel} alt="Imagem ilustrativa e minimalista de um hotel" />
+                <div className={styles.textImg}>
+                    <h2>
+                        Bem-Vindo ao <br />HotelEasy
+                    </h2>
+                    <p>
+                        Sua jornada começa com um clique.
+                    </p>
+                </div>
+            </figure>
+            <div className={styles.session}>
+                <h1>REGISTRO</h1>
                 <form onSubmit={submit} className={styles.form}>
                     <Input
                         icon={<FaRegUser />}
@@ -71,6 +81,7 @@ export default function Register() {
                         maxLength={100}
                         placeholder='Digite seu nome'
                     />
+
                     <Input
                         icon={<MdOutlineEmail />}
                         type='email'
@@ -81,6 +92,7 @@ export default function Register() {
                         maxLength={100}
                         placeholder='Digite seu endereço de e-mail'
                     />
+
                     <Input
                         iconCadeadoLock={<FaLock />}
                         iconCadeadoUnLock={<FaUnlock />}
@@ -94,18 +106,13 @@ export default function Register() {
                         minLength={8}
                         placeholder='Digite sua senha'
                     />
-                    <Input
-                        type='hidden'
-                        name='role'
-                        value={usuario.role = 'USER'}
-                        handleOnChange={handleEmail}
-                    />
+
                     <Button
                         tipo='submit'
                         text='Registrar'
                     />
                 </form>
-                <p className={styles.linkLogin}>
+                <p className={styles.link}>
                     Já tem uma conta?
                     <LinkButton
                         caminho='/login'
@@ -113,9 +120,6 @@ export default function Register() {
                         className={stylesLinkButton.LinkLoginRegister}
                     />
                 </p>
-            </div>
-            <div className={styles.containerImagem}>
-                <img src={photo} alt='' />
             </div>
         </div>
     );
