@@ -4,12 +4,12 @@
 }
 
 .LinkHeader{
-    color: black;
+    color: var(--TextColor);
     margin: 0 1em;
 }
 
 .LinkLoginRegister{
-    color: #3A8897;
+    color: var(--SecondaryColor);
     font-size: 0.9em;
     font-weight: bold;
 }
