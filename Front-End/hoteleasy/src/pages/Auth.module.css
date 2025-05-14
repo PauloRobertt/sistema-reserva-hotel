@@ -1,8 +1,7 @@
 .container {
     height: 100vh;
     width: 100%;
-    background: #0077B6;
-    background: linear-gradient(90deg, rgba(0, 119, 182, 1) 42%, rgba(0, 212, 255, 1) 100%);
+    background-color: #b8b8b8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,12 +15,14 @@
 
 .link {
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
     gap: 0.3em;
 }
 
 .session {
     width: 30em;
-    height: 29em;
+    height: 80%;
     display: flex;
     flex-direction: column;
     gap: 1.2em;
@@ -40,8 +41,13 @@
     gap: 1em;
 }
 
+.form small {
+    text-align: left;
+    width: 100%;
+}
+
 .containerImg img {
-    width: 50%;
+    width: 60%;
     height: 50%;
 }
 
@@ -50,16 +56,19 @@
     border-top-left-radius: 0.8em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 30em;
-    height: 29em;
-    background-color: var(--PrimaryColor);
+    height: 80%;
+    color: var(--PrimaryColor);
+    background-color: var(--SecondaryColor);
 }
 
 .textImg {
     text-align: center;
-    top: 1em;
-    left: 1em;
     font-size: 26px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2em;
 }

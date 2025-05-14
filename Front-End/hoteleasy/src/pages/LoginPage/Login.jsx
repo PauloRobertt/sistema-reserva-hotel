@@ -59,17 +59,20 @@ export default function Login() {
     return (
         <div className={styles.container}>
             <figure className={styles.containerImg}>
-                <img src={OrganizarImg.Image6} alt="" />
+                <img src={OrganizarImg.ImageHotel} alt="Imagem ilustrativa e minimalista de um hotel" />
                 <div className={styles.textImg}>
                     <h2>
                         Bem-Vindo ao <br />HotelEasy
                     </h2>
+                    <p>
+                        Sua jornada começa com um clique.
+                    </p>
                 </div>
             </figure>
             <div className={styles.session}>
-                <h1>Login</h1>
-                <small>Por favor use seu email e senha para acessar.</small>
+                <h1>LOGIN</h1>
                 <form onSubmit={submit} className={styles.form}>
+                    <small>Por favor use seu email e senha para acessar.</small>
                     <Input
                         icon={<MdOutlineEmail />}
                         type='email'

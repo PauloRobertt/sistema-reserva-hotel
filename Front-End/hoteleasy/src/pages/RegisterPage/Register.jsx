@@ -5,6 +5,8 @@ import styles from '../Auth.module.css';
 import LinkButton from '../../components/LinkButton.jsx';
 import stylesLinkButton from '../../components/LinkButton.module.css';
 
+import { OrganizarImg } from '../../assets/OrganizarImg.js';
+
 import { useState } from 'react';
 import { useNavigate } from "react-router";
 
@@ -55,8 +57,19 @@ export default function Register() {
 
     return (
         <div className={styles.container}>
+            <figure className={styles.containerImg}>
+                <img src={OrganizarImg.ImageHotel} alt="Imagem ilustrativa e minimalista de um hotel" />
+                <div className={styles.textImg}>
+                    <h2>
+                        Bem-Vindo ao <br />HotelEasy
+                    </h2>
+                    <p>
+                        Sua jornada começa com um clique.
+                    </p>
+                </div>
+            </figure>
             <div className={styles.session}>
-                <h1>Registro</h1>
+                <h1>REGISTRO</h1>
                 <form onSubmit={submit} className={styles.form}>
                     <Input
                         icon={<FaRegUser />}
@@ -107,8 +120,6 @@ export default function Register() {
                         className={stylesLinkButton.LinkLoginRegister}
                     />
                 </p>
-            </div>
-            <div className={styles.containerImg}>
             </div>
         </div>
     );
