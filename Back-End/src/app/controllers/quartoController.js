@@ -5,22 +5,20 @@ class quartoController {
     async findAll(req, res) {
         try {
             const result = await service.findAll();
-            return res.json(result);
+            return res.status(200).json(result);
         }
-        catch (error) {
-            console.error(`Ocorreu um erro ao realizar a busca dos quarto`, error);
-            return res.status(500).json({error: 'Erro ao buscar quarto!'});
+        catch (HttpError) {
+            return res.status(HttpError.status).json({ message: `${HttpError.message}` });
         }
     }
 
     async findById(req, res) {
         try {
             const result = await service.findById(req.params.id);
-            return res.json(result);
+            return res.status(200).json(result);
         }
-        catch (error) {
-            console.error(`Ocorreu um erro ao realizar a busca pelo quarto`, error);
-            return res.status(500).json({error: 'Erro ao buscar quarto por id!'});
+        catch (HttpError) {
+            return res.status(HttpError.status).json({ message: `${HttpError.message}` });
         }
     }
 
@@ -29,30 +27,28 @@ class quartoController {
             const result = await service.createQuarto(req.body);
             return res.status(200).json(result);
         }
-        catch (error) {
-            return res.status(500).json({message: `${error.message}`});
+        catch (HttpError) {
+            return res.status(HttpError.status).json({ message: `${HttpError.message}` });
         }
     }
 
     async editQuarto(req, res) {
         try {
             const result = await service.editQuarto(req.params.id, req.body);
-            return res.json(result);
+            return res.status(200).json(result);
         }
-        catch (error) {
-            console.error(`Ocorreu um erro ao realizar a atualização do quarto`, error);
-            return res.status(500).json({error: 'Erro ao atualizar quarto!'});
+        catch (HttpError) {
+            return res.status(HttpError.status).json({ message: `${HttpError.message}` });
         }
     }
 
     async deleteQuarto(req, res) {
         try {
             const result = await service.deleteQuarto(req.params.id);
-            return res.json(result);
+            return res.status(200).json(result);
         }
-        catch (error) {
-            console.error(`Ocorreu um erro ao realizar a exclução do quarto`, error);
-            return res.status(500).json({error: 'Erro ao deletar quarto!'});
+        catch (HttpError) {
+            return res.status(HttpError.status).json({ message: `${HttpError.message}` });
         }
     }
 }
