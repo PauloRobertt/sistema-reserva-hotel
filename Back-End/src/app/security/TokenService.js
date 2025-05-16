@@ -1,15 +1,16 @@
 import 'dotenv/config';
 import jwt from 'jsonwebtoken';
+import HttpError from '../Error/HttpError.js';
 
 class TokenService {
 
     refresh = (refreshToken) => {
         try {
             return new Promise((resolve, reject) => {
-                if (!refreshToken) reject(new Error('RefreshToken não encontrado!'));
+                if (!refreshToken) reject(new HttpError('RefreshToken não encontrado!', 404));
 
                 jwt.verify(refreshToken, process.env.REFRESH_SECRET, (err, user) => {
-                    if (err) reject(new Error("RefreshToken inválido!"));
+                    if (err) reject(new HttpError("RefreshToken inválido!", 400));
 
                     const acessToken = jwt.sign(
                         {
@@ -25,7 +26,7 @@ class TokenService {
                 })
             })
         } catch (error) {
-            throw new Error(error)
+            throw error;
         }
     }
 
@@ -50,18 +51,23 @@ class TokenService {
             { expiresIn: '15m' }
         );
 
+
         return { refreshToken, acessToken };
     }
 
     checkToken = (req, res, next) => {
         const authHeader = req.headers['authorization'];
-        // const token = authHeader && authHeader.split(' ')[1];
-        const token = authHeader;
+        // const token = authHeader;
 
-        if (!token) return res.status(403).json({ msg: 'Token não encontrado!' });
+        //Codigo para teste no POSTMAN
+        const token = authHeader && authHeader.split(' ')[1];        
 
+        if (!token) return res.status(401).json({ message: 'Token não encontrado!' });
+        
         jwt.verify(token, process.env.ACCESS_SECRET, async (err, user) => {
             if (err) {
+
+                console.log(err)
 
                 if (err.name === 'TokenExpiredError') {
                     return res.status(401).json({

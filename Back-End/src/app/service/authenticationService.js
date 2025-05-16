@@ -1,36 +1,38 @@
 import bcrypt from 'bcrypt';
 import repository from '../repository/usuarioRepository.js';
 import TokenService from '../security/TokenService.js';
+import HttpError from '../Error/HttpError.js';
 
 class authenticationService {
 
     async login(user) {
         try {
             const { email, senha } = user;
-            const usuarioExistente = await repository.findByEmail(email);
 
             if (!email || !senha) {
-                throw new Error('Todos os campos são obrigatórios!');
+                throw new HttpError('Todos os campos são obrigatórios!', 400);
             }
 
+            const usuarioExistente = await repository.findByEmail(email);
+
             if (!usuarioExistente) {
-                throw new Error('Email não existe!')
+                throw new HttpError('Email não existe!', 404)
             }
 
             if (senha.length < 8 || senha.length > 32) {
-                throw new Error('A senha deve ter no mínimo 8 caracteres e no maximo 32!');
+                throw new HttpError('A senha deve ter no mínimo 8 caracteres e no maximo 32!', 400);
             }
 
             const passwordCompare = await bcrypt.compare(senha, usuarioExistente.senha);
 
-            if (usuarioExistente.email !== email || !passwordCompare) {
-                throw new Error('Email ou senha inválidos!')
+            if (!passwordCompare) {
+                throw new HttpError('Senha incorretos!', 401);
             }
 
             return TokenService.generateTokens(usuarioExistente);
 
         } catch (error) {
-            throw new Error(error.message);
+            throw error;
         }
     }
 
@@ -42,21 +44,21 @@ class authenticationService {
             const senhaHash = await bcrypt.hash(senha, salt);
 
             if (!nome || !email || !senha) {
-                throw new Error('Todos os campos são obrigatórios!');
+                throw new HttpError('Todos os campos são obrigatórios!', 400);
             }
 
             const usuarioExistente = await repository.findByEmail(email);
 
             if (usuarioExistente !== null) {
-                throw new Error('Email já esta em uso!');
+                throw new HttpError('Email já esta em uso!', 409);
             }
 
             if (senha.length < 8 || senha.length > 32) {
-                throw new Error('A senha deve ter no mínimo 8 caracteres e no maximo 32!');
+                throw new HttpError('A senha deve ter no mínimo 8 caracteres e no maximo 32!', 400);
             }
 
             if (!senha.match(/[a-z]/g) || !senha.match(/[A-Z]/g) || !senha.match(/[\W|_]/g)) {
-                throw new Error('A senha deve conter letras maiusculas, minusculas e caracteres especiais');
+                throw new HttpError('A senha deve conter letras maiusculas, minusculas e caracteres especiais', 400);
             }
 
             return await repository.createUser({
@@ -67,7 +69,7 @@ class authenticationService {
             });
         }
         catch (error) {
-            throw new Error(error.message);
+            throw error;
         }
     }
 }

@@ -23,7 +23,7 @@ router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //TokenService.checkToken, permissios.verifyAdmin
 
 //Rotas CRUD Usuario
-router.get('/usuario', usuarioController.findAll);
+router.get('/usuario', TokenService.checkToken, usuarioController.findAll);
 router.get('/usuario/:id', TokenService.checkToken, usuarioController.findById);
 router.post('/usuario', usuarioController.createUser);
 router.put('/usuario/:id', TokenService.checkToken, usuarioController.editUser);
