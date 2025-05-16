@@ -1,25 +1,30 @@
 import repository from "../repository/usuarioRepository.js";
+import HttpError from '../Error/HttpError.js';
 
 class usuarioService {
     async findAll() {
-        return await repository.findAll();
+        try {
+            return await repository.findAll();
+        } catch (error) {
+            throw error;
+        }
     }
 
     async findById(id) {
         if (!id) {
-            throw new Error('O ID é obrigatorio!');
+            throw new HttpError('O ID é obrigatorio!', 400);
         }
 
         try {
             const user = await repository.findById(id);
             if (!user) {
-                throw new Error('Usuario não encontrado!');
+                throw new HttpError('Usuario não encontrado!', 404);
             }
 
             return user;
         }
         catch (error) {
-            throw new Error(`Erro ao realizar a busca do usuario: ${error}`);
+            throw error;
         }
     }
 
@@ -30,52 +35,57 @@ class usuarioService {
             const usuarios = await repository.findAll();
 
             if (!nome || !email || !senha) {
-                throw new Error('Todos os campos são obrigatórios!');
+                throw new HttpError('Todos os campos são obrigatórios!', 400);
             }
 
             if (senha.length < 8 || senha.length > 32) {
-                throw new Error('A senha deve ter no mínimo 8 caracteres e no maximo 32!');
+                throw new HttpError('A senha deve ter no mínimo 8 caracteres e no maximo 32!', 400);
             }
 
             if (!senha.match(/[a-z]/g) || !senha.match(/[A-Z]/g) || !senha.match(/[\W|_]/g)) {
-                throw new Error('A senha deve conter letras maiusculas, minusculas e caracteres especiais');
+                throw new HttpError('A senha deve conter letras maiusculas, minusculas e caracteres especiais', 400);
             }
 
-            if(email == usuarios.map((value)=>{return value.email;})){
-                throw new Error('Email já utilizado!');
+            if (email == usuarios.map((value) => { return value.email; })) {
+                throw new HttpError('Email já utilizado!', 409);
             }
 
             return await repository.createUser(user);
         }
         catch (error) {
-            throw new Error (error.message);
+            throw error;
         }
     }
 
     async editUser(id, editUser) {
+        if (!id) throw new HttpError('O ID é obrigatorio!', 400);
+
         try {
+            const user = await repository.findById(id);
+            if (!user) throw new HttpError('Usuario não encontrado!', 404);
+
             return await repository.editUser(id, editUser);
         }
         catch (error) {
-            throw new Error(`Erro ao editar o usuario: ${error}`);
+            throw error;
         }
     }
 
     async deleteUser(id) {
         if (!id) {
-            throw new Error('O ID é obrigatorio!');
+            throw new HttpError('O ID é obrigatorio!', 400);
         }
 
         try {
             const user = await repository.findById(id);
             if (!user) {
-                throw new Error('Usuario não encontrado!');
+                throw new HttpError('Usuario não encontrado!', 404);
             }
 
             return await repository.deleteUser(id);
         }
         catch (error) {
-            throw new Error(`Erro ao realizar a deleção do usuario: ${error}`);
+            throw error;
         }
     }
 

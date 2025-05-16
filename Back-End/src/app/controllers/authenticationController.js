@@ -16,12 +16,11 @@ class authenticationController {
                 maxAge: 30 * 24 * 60 * 60 * 1000
             });
 
-            res.status(200).json({
-                message: "Login Success", token: acessToken
-            });
-            
-        } catch (error) {
-            return res.status(500).json({ message: `${error.message}` });
+            res.status(200).json({ message: "Login Success", token: acessToken });
+
+        }
+        catch (HttpError) {
+            return res.status(HttpError.status).json({ message: `${HttpError.message}` });
         }
     }
 
@@ -30,21 +29,21 @@ class authenticationController {
             const result = await service.register(req.body);
             return res.status(200).json(result);
         }
-        catch (error) {
-            return res.status(500).json({ message: `${error.message}` });
+        catch (HttpError) {
+            return res.status(HttpError.status).json({ message: `${HttpError.message}` });
         }
     }
 
     async refresh(req, res) {
         try {
             const acessToken = await TokenService.refresh(req.cookies.refreshToken);
-            res.status(200).json({AcessToken: acessToken});
+            res.status(200).json({ AcessToken: acessToken });
         }
-        catch (error) {
-            return res.status(500).json({ message: `${error.message}` });
+        catch (HttpError) {
+            return res.status(HttpError.status).json({ message: `${HttpError.message}` });
         }
     }
-        
+
 }
 
 export default new authenticationController();

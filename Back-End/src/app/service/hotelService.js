@@ -1,26 +1,31 @@
 import repository from "../repository/hotelRepository.js";
+import HttpError from "../Error/HttpError.js";
 
 class hotelService {
     async findAll() {
-        return await repository.findAll();
+        try {
+            return await repository.findAll();
+        } catch (error) {
+            throw error;
+        }
     }
 
     async findById(id) {
         if (!id) {
-            throw new Error('O ID é obrigatorio!');
+            throw new HttpError('O ID é obrigatorio!', 400);
         }
 
         try {
             const hotel = await repository.findById(id);
 
             if (!hotel) {
-                throw new Error('Hotel não encontrado!');
+                throw new HttpError('Hotel não encontrado!', 404);
             }
 
             return hotel;
         }
         catch (error) {
-            throw new Error(`Erro ao realizar a busca do hotel: ${error}`);
+            throw error;
         }
     }
 
@@ -29,45 +34,45 @@ class hotelService {
             const { nomeHotel, endereco, descricao, telefone, email } = data;
 
             if (!nomeHotel || !endereco || !descricao || !telefone || !email) {
-                throw new Error('Todos os campos são obrigatórios!');
+                throw new HttpError('Todos os campos são obrigatórios!', 400);
             }
 
             return await repository.createHotel(data);
         }
         catch (error) {
-            throw new Error(error.message);
+            throw error;
         }
     }
 
     async editHotel(id, editHotel) {
         if (!id) {
-            throw new Error('O ID é obrigatorio!');
+            throw new HttpError('O ID é obrigatorio!', 400);
         }
 
         try {
             return await repository.editHotel(id, editHotel)
         }
         catch (error) {
-            throw new Error(`Erro ao editar o hotel: ${error}`);
+            throw error;
         }
     }
 
     async deleteHotel(id) {
         if (!id) {
-            throw new Error('O ID é obrigatorio!');
+            throw new HttpError('O ID é obrigatorio!', 400);
         }
 
         try {
             const hotel = await repository.findById(id)
 
             if (!hotel) {
-                throw new Error('Hotel não encontrado!');
+                throw new HttpError('Hotel não encontrado!', 404);
             }
 
             return await repository.deleteHotel(id);
         }
         catch (error) {
-            throw new Error(`Erro ao realizar a deleção do hotel: ${error}`);
+            throw error;
         }
     }
 
