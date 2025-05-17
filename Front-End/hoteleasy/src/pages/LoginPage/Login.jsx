@@ -1,16 +1,15 @@
-import { useState } from 'react';
-
-import { useNavigate } from 'react-router-dom';
-
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { OrganizarImg } from '../../assets/OrganizarImg.js';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 
 import styles from '../Auth.module.css';
 
-import styleLinkButton from '../../components/LinkButton.module.css';
-
+//Components
 import Input from '../../components/Input.jsx';
 import Button from '../../components/SubmitButton.jsx';
 import LinkButton from '../../components/LinkButton.jsx';
+import styleLinkButton from '../../components/LinkButton.module.css';
 
 //React Icons
 import { MdOutlineEmail } from "react-icons/md";
@@ -20,6 +19,7 @@ import { FaUnlock } from "react-icons/fa";
 
 export default function Login() {
     const navegate = useNavigate();
+    const { state } = useLocation();
 
     const [usuario, setUsuario] = useState({});
 
@@ -42,19 +42,56 @@ export default function Login() {
             credentials: 'include',
             body: JSON.stringify(usuario)
         })
-            .then(res => {
+            .then(async res => {
                 if (!res.ok) {
-                    throw new Error(`Erro na requisição: ${res.status}`)
+                    const errorData = await res.json();
+
+                    toast.warn(errorData.message, {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
+
+                    throw new Error(`Erro na requisição: ${res.status}`);
                 }
 
                 return res.json();
             })
             .then((data) => {
                 localStorage.setItem('AcessToken', data.token);
-                navegate('/');
+                navegate('/', { state: { executarFuncao: true } });
             })
-            .catch((error) => { console.log(error) })
+            .catch((error) => {
+                console.error(error);
+            })
     }
+
+    const functionToast = () => {
+        toast.success("Usuario criado com sucesso!", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Bounce,
+        });
+    }
+
+    useEffect(() => {
+        if (state?.executarFuncao) {
+            functionToast();
+            navegate('.', { replace: true, state: {} });
+        }
+    }, [state])
 
     return (
         <div className={styles.container}>
@@ -118,6 +155,19 @@ export default function Login() {
                     />
                 </p>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+                transition={Bounce}
+            />
         </div>
     );
 }
