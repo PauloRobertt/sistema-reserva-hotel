@@ -9,6 +9,7 @@ import { OrganizarImg } from '../../assets/OrganizarImg.js';
 
 import { useState } from 'react';
 import { useNavigate } from "react-router";
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 
 //React Icons
 import { FaRegUser } from "react-icons/fa";
@@ -40,15 +41,29 @@ export default function Register() {
             },
             body: JSON.stringify(usuario)
         })
-            .then((res) => {
+            .then(async (res) => {
                 if (!res.ok) {
-                    throw new Error(`Erro na requisição: ${res.status}`)
+                    const errorData = await res.json();
+
+                    toast.warn(errorData.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
+
+                    throw new Error(`Erro na requisição: ${res.status}`);
                 }
 
                 return res.json();
             })
             .then((data) => {
-                navegate("/login", { state: { message: 'Usuario criado com sucesso!' } })
+                navegate("/login", { state: { executarFuncao: true } })
             })
             .catch((error) => {
                 console.error('Erro na requisição: ', error)
@@ -107,6 +122,13 @@ export default function Register() {
                         placeholder='Digite sua senha'
                     />
 
+                    <Input
+                        type='hidden'
+                        name='role'
+                        value={usuario.role = 'USER'}
+                        handleOnChange={handleEmail}
+                    />
+
                     <Button
                         tipo='submit'
                         text='Registrar'
@@ -121,6 +143,18 @@ export default function Register() {
                     />
                 </p>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 }
