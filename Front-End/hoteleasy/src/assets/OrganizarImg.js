@@ -1,5 +1,7 @@
-import ImageHotel from './img/HotelImg.png';
+import LogoBranca from "./img/LogoBranca.png";
+import LogoAzul from "../../public/assets/LogoAzul.png";
 
 export const OrganizarImg = {
-    ImageHotel: ImageHotel
-}
+  LogoBranca: LogoBranca,
+  LogoAzul: LogoAzul,
+};
