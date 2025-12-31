@@ -1,9 +1,9 @@
-import Header from "../../layout/Header.jsx"
+import Header from "../../layout/Header/Header.jsx";
 
-export default function HomePage(){
-    return(
-        <div>
-            <Header />
-        </div>
-    )
+export default function HomePage() {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
