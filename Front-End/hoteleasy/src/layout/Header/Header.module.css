@@ -1,0 +1,72 @@
+.sectionHeader {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  padding: 1em 0;
+  border-bottom: 0.1em solid #cecdcd;
+}
+
+.conteudoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contentLink {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iconMenu {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sectionmenuDesativado {
+  display: none;
+}
+
+.sectionMenuAtivo {
+  width: 18em;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5em;
+  padding: 3em 1em;
+  border: 0.1em solid #696868;
+}
+
+.contentMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+}
+
+.link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.headerLogo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.headerLogo img {
+  width: 8%;
+  height: 8%;
+}
+
+.headerLogo span {
+  color: var(--SecondaryColor);
+}
