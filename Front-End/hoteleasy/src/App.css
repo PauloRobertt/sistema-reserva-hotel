@@ -1,25 +1,28 @@
-:root{
-  --FeedBackVisualSucesso: #3C9837;
-  --FeedBackVisualError: #E41212;
-  --FeedBackVisualAlert: #FFB703;
+:root {
+  --FeedBackVisualSucesso: #3c9837;
+  --FeedBackVisualError: #e41212;
+  --FeedBackVisualAlert: #ffb703;
+  --ColorHover: #f1f1f1;
   --PrimaryColor: #ffffff;
-  --SecondaryColor: #0077B6;
-  --TextColor: #1F1F1F;
+  --SecondaryColor: #0077b6;
+  --TextColor: #1f1f1f;
 }
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
-html, body, #root{
-  background-color: #EFEFEF;
+html,
+body,
+#root {
+  background-color: #efefef;
   height: 100%;
   position: relative;
 }
 
-.maxSection{
+.maxSection {
   width: 80%;
 }
