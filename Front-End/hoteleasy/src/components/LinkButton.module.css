@@ -1,15 +1,23 @@
-.LinkButton{
-    text-decoration: none;
-    width: fit-content;
+.LinkButton {
+  text-decoration: none;
+  width: fit-content;
 }
 
-.LinkHeader{
-    color: var(--TextColor);
-    margin: 0 1em;
+.LinkHeader {
+  color: var(--TextColor);
+  margin: 0 1em;
+  padding: 0.4em;
+  font-size: 1.2em;
 }
 
-.LinkLoginRegister{
-    color: var(--SecondaryColor);
-    font-size: 0.9em;
-    font-weight: bold;
+.LinkHeader:hover {
+  background-color: var(--ColorHover);
+  padding: 0.4em;
+  border-radius: 0.5em;
+}
+
+.LinkLoginRegister {
+  color: var(--SecondaryColor);
+  font-size: 0.9em;
+  font-weight: bold;
 }
