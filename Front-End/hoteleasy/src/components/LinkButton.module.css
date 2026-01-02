@@ -16,6 +16,22 @@
   border-radius: 0.5em;
 }
 
+.LinkMenu {
+  color: var(--TextColor);
+  padding: 0.4em;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.LinkMenu:hover {
+  background-color: var(--ColorHover);
+  padding: 0.4em;
+  border-radius: 0.5em;
+}
+
 .LinkLoginRegister {
   color: var(--SecondaryColor);
   font-size: 0.9em;

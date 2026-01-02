@@ -19,35 +19,35 @@ export default function Menu({ stateMenu, toggleMenu }) {
       </div>
       <div className={styles.contentMenu}>
         <div className={styles.link}>
-          <FiUser size={24} />
           <LinkButton
+            icone={<FiUser size={24} />}
             text="Realizar Login"
             caminho=""
-            className={stylesLinkButton.LinkHeader}
+            className={stylesLinkButton.LinkMenu}
           />
         </div>
         <div className={styles.link}>
-          <CiHeart size={24} />
           <LinkButton
+            icone={<CiHeart size={24} />}
             text="Meus Favoritos"
             caminho=""
-            className={stylesLinkButton.LinkHeader}
+            className={stylesLinkButton.LinkMenu}
           />
         </div>
         <div className={styles.link}>
-          <FaCalendarCheck size={24} />
           <LinkButton
+            icone={<FaCalendarCheck size={24} />}
             text="Minhas Reservas"
             caminho=""
-            className={stylesLinkButton.LinkHeader}
+            className={stylesLinkButton.LinkMenu}
           />
         </div>
         <div className={styles.link}>
-          <IoIosHelpCircleOutline size={24} />
           <LinkButton
+            icone={<IoIosHelpCircleOutline size={24} />}
             text="Ajuda"
             caminho=""
-            className={stylesLinkButton.LinkHeader}
+            className={stylesLinkButton.LinkMenu}
           />
         </div>
       </div>
