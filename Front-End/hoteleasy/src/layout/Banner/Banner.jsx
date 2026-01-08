@@ -23,7 +23,7 @@ export default function Banner() {
             <FaStar size="1.5em" color="var(--SecondaryColor)" />
             <p>
               Avaliações reais
-              <small>Cancelamento fácil em hotéis selecionados</small>
+              <small>Avaliações reais de hóspedes verificados</small>
             </p>
           </li>
           <li>
