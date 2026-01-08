@@ -37,3 +37,16 @@
   font-size: 0.9em;
   font-weight: bold;
 }
+
+.LinkButtonSaibaMais {
+  text-shadow: 1px 1px 2px var(--TextColor);
+  box-shadow: 1px 1px 10px var(--TextColor);
+  border-radius: 0.5em;
+  color: var(--PrimaryColor);
+  background-color: var(--SecondaryColor);
+  font-weight: bold;
+  padding: 0.4em;
+  font-size: 1.2em;
+  width: 100%;
+  text-align: center;
+}
