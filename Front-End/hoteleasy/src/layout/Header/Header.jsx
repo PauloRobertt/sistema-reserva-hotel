@@ -4,8 +4,8 @@ import styles from "./Header.module.css";
 
 //Components
 import Menu from "../Menu/Menu.jsx";
-import LinkButton from "../../components/LinkButton.jsx";
-import stylesLinkButton from "../../components/LinkButton.module.css";
+import LinkButton from "../../components/LinkButton/LinkButton.jsx";
+import stylesLinkButton from "../../components/LinkButton/LinkButton.module.css";
 
 import { OrganizarImg } from "../../assets/OrganizarImg.js";
 

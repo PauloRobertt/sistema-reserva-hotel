@@ -1,8 +1,8 @@
 import styles from "./Banner.module.css";
-import stylesLinkButton from "../../components/LinkButton.module.css";
+import stylesLinkButton from "../../components/LinkButton/LinkButton.module.css";
 
 // Componentes
-import LinkButton from "../../components/LinkButton.jsx";
+import LinkButton from "../../components/LinkButton/LinkButton.jsx";
 
 // React Icons
 import { FaStar } from "react-icons/fa6";

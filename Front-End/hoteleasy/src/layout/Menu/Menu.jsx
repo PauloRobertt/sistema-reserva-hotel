@@ -1,6 +1,6 @@
 import styles from "./Menu.module.css";
-import LinkButton from "../../components/LinkButton.jsx";
-import stylesLinkButton from "../../components/LinkButton.module.css";
+import LinkButton from "../../components/LinkButton/LinkButton.jsx";
+import stylesLinkButton from "../../components/LinkButton/LinkButton.module.css";
 
 //React Icons
 import { TfiClose } from "react-icons/tfi";
